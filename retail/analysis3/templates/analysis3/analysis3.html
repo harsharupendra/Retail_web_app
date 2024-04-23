@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis 3: Sales Trends</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,300,700');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #25c481, #25b7c4);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        select, button {
+            padding: 8px;
+            margin-right: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #f50057;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #25b7c4;
+        }
+
+        img {
+            width: 50%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .plot {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f50057;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #25b7c4;
+        }
+    </style>
+</head>
+<body>
+    <h1>  Sales Trends</h1>
+
+    <form action="{% url 'analysis3' %}" method="get">
+        <label for="year">Select Year:</label>
+        <select name="year" id="year">
+            {% for year in years %}
+            <option value="{{ year }}" {% if year|stringformat:"s" == request.GET.year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="store">Select Store:</label>
+        <select name="store" id="store">
+            {% for store in stores %}
+            <option value="{{ store }}" {% if store|stringformat:"s" == request.GET.store %}selected{% endif %}>{{ store }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="dept">Select Department:</label>
+        <select name="dept" id="dept">
+            {% for dept in departments %}
+            <option value="{{ dept }}" {% if dept|stringformat:"s" == request.GET.dept %}selected{% endif %}>{{ dept }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Update Charts</button>
+    </form>
+
+    <div>
+        <h2>  Average Weekly Sales by Store</h2>
+        {% if plot1 %}
+        <img src="data:image/png;base64,{{ plot1 }}" alt="Sales Trends by Store">
+        {% else %}
+        <p>No data available for the selected parameters.</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>  Average Weekly Sales by Department</h2>
+        {% if plot2 %}
+        <img src="data:image/png;base64,{{ plot2 }}" alt="Sales Trends by Department">
+        {% else %}
+        <p>No data available for the selected parameters.</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>  Combined Sales Trends</h2>
+        {% if plot3 %}
+        <img src="data:image/png;base64,{{ plot3 }}" alt="Combined Sales Trends">
+        {% else %}
+        <p>No data available for the selected parameters.</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fuel Price vs Temperature</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,300,700');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #25c481, #25b7c4);
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .row img {
+            width: 49%; 
+            height: auto;
+        }
+        .row.full-width img {
+            width: 100%;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f50057;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #25b7c4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fuel Price vs Temperature</h1>
+    <div class="container">
+        <!-- Top row with two plots side by side -->
+        <div class="row">
+            <h3>Distribution of Fuel Price and Temperature</h3>
+        </div>
+        <div class="row">
+            
+            <img src="{% static 'analysis4/box_fuel.png' %}" alt="Plot 1">
+            <img src="{% static 'analysis4/box_temp.png' %}" alt="Plot 2">
+        </div>
+        <div class="row">
+            <h3>Correlation between Fuel Prices and Temperature</h3>
+        </div>
+        <!-- Second row with two more plots side by side -->
+        <div class="row">
+            <img src="{% static 'analysis4/hex.png' %}" alt="Plot 3">
+            <img src="{% static 'analysis4/heat.png' %}" alt="Plot 4">
+        </div>
+        <div class="row">
+            <h3>Correlation between Fuel Prices and Temperature</h3>
+           
+        </div>
+        <!-- Third row with one wide plot -->
+        <div class="row">
+            <img src="{% static 'analysis4/corr.png' %}" alt="Plot 5" style="width:100%;">
+        </div>
+        <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

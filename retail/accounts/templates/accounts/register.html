@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retail Analysis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,300,700');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #25c481, #25b7c4);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 100vh;
+            padding: 40px;
+        }
+        .left-column, .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .left-column {
+            padding-right: 20px;
+        }
+        .right-column {
+            padding-left: 20px;
+        }
+        form {
+            width: 100%;
+            max-width: 300px;
+        }
+        input[type=text], input[type=email], input[type=password], button {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        input[type=text], input[type=email], input[type=password] {
+            color: #000; 
+        }
+        button {
+            background-color: #f50057;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+        button:hover {
+            background-color: #25b7c4;
+        }
+        .container {
+            padding: 16px;
+            width: 100%;
+        }
+        a {
+            color: #FFD700;
+        }
+        a:hover {
+            color: #ADD8E6;
+        }
+        h2, p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-column">
+        <h2>Retail Analysis</h2>
+        <p><strong>Context:</strong> Forecasting department-wide sales across 45 stores for the upcoming year. We'll analyze historical data and factors like temperature, fuel prices, and unemployment rates to model the effects of promotional markdowns on holiday weeks and sales. Through correlation analysis, we'll explore the relationship between these factors and sales, guiding actionable recommendations to prioritize strategies with the greatest business impact and identify holiday-related sales trends.</p>
+    </div>
+    <div class="right-column">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+                <button type="submit">Sign up</button>
+                <p>Already a user? <a href="{% url 'login' %}">Login here</a></p>
+           
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!-- templates/analysis1/analysis.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Analysis</title>
+</head>
+<body>
+    <h1>Data Analysis</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="year">Select Year:</label>
+        <select name="year" id="year">
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+        </select>
+
+        <label for="Month">Select Month:</label>
+        <input type="number" name="month" id="month" min="1" max="12">
+
+        <button type="submit">Go</button>
+    </form>
+
+    {% if data %}
+        <h2>Filtered Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Store</th>
+                    <th>Dept</th>
+                    <th>Fuel Price</th>
+                    <th>Temperature</th>
+                    <th>CPI</th>
+                    <th>Monthly Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.store }}</td>
+                        <td>{{ item.dept }}</td>
+                        <td>{{ item.fuel_price }}</td>
+                        <td>{{ item.temperature }}</td>
+                        <td>{{ item.cpi }}</td>
+                        <td>{{ item.avg_monthly_sales }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    {% if avg_fuel_price and gross_monthly_sales and avg_temperature and avg_cpi %}
+    <h2>Average Values</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>Monthly Gross Sales</td>
+                <td>{{ gross_monthly_sales|floatformat:2 }}</td>
+                <td>{{ monthly_sales_unit }}</td>
+            </tr>
+            <tr>
+                <td>Fuel Price</td>
+                <td>{{ avg_fuel_price|floatformat:2 }}</td>
+                <td>{{ fuel_price_unit }}</td>
+            </tr>
+            <tr>
+                <td>Temperature</td>
+                <td>{{ avg_temperature|floatformat:2 }}</td>
+                <td>{{ temperature_unit }}</td>
+            </tr>
+            <tr>
+                <td>CPI</td>
+                <td>{{ avg_cpi|floatformat:2 }}</td>
+                <td>{{ cpi_unit }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}
+
+    <a href="{% url 'dashboard' %}" class="button">Back</a>
+
+</body>
+</html>
+

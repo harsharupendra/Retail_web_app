@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,300,700');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #25c481, #25b7c4); 
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type=text], input[type=email], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.3); 
+            color: #000; 
+        }
+        button {
+            background-color: #f50057; 
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%; 
+            border-radius: 2px;
+        }
+        button:hover {
+            background-color: #25b7c4; 
+            opacity: 1; 
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

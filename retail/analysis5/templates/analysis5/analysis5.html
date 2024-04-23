@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Impact of Unemployment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,300,700');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #25c481, #25b7c4);
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .row img {
+            width: 49%; 
+            height: auto;
+        }
+        .row.full-width img {
+            width: 100%;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f50057;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #25b7c4;
+        }
+        
+        table {
+            width: 100%;
+            table-layout: fixed; 
+            border-collapse: collapse;
+            margin-bottom: 1em; 
+        }
+
+        th {
+            background-color: #555; 
+            padding: 8px; 
+        }
+
+        td {
+            padding: 8px; 
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
+
+        .data-box {
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex; 
+            flex-direction: column; 
+            justify-content: stretch; 
+            min-height: 100%; 
+        }
+
+        .data-half {
+            width: calc(50% - 10px);
+            overflow-x: auto;
+            height: 100%;
+            display: flex; 
+            flex-direction: column; 
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Impact of Unemployment</h1>
+    <div class="container">
+        <!-- Top row with two plots side by side -->
+        <div class="row">
+            <h3>Unemployment on Departmental Performance</h3>
+        </div>
+        <div class="row">
+            
+                <table>
+                    <tr>
+                        <th>Year</th><th>Department</th><th>Correlation</th>
+                    </tr>
+                    <!-- Repeat these rows for 5 entries -->
+                    <tr>
+                        <td>2011</td><td>49</td><td>0.83</td>
+                    </tr>
+                    <tr>
+                        <td>2011</td><td>65</td><td>0.70</td>
+                    </tr>
+                    <tr>
+                        <td>2011</td><td>94</td><td>0.61</td>
+                    </tr>
+                    <tr>
+                        <td>2011</td><td>52</td><td>-0.61</td>
+                    </tr>
+                    <tr>
+                        <td>2011</td><td>90</td><td>-0.60</td>
+                    </tr>
+                </table>
+        </div>
+        
+        
+        <div class="row">
+            <h3>Most Impacted Departments</h3>
+        </div>
+        <div class="row">
+            <div class="data-box data-half">
+                <img src="{% static 'analysis5/dep1.png' %}" alt="Plot 5" style="width:100%;">
+            </div>
+            <div class="data-box data-half">
+                <img src="{% static 'analysis5/dep2.png' %}" alt="Plot 5" style="width:100%;">
+            </div>
+        </div>
+        <div class="row">
+            <h3>Correlation Between Unemployment and Sales Performance</h3>
+           
+        </div>
+        <!-- Third row with one wide plot -->
+        <div class="row">
+            <img src="{% static 'analysis5/vsales.png' %}" alt="Plot 5" style="width:100%;">
+        </div>
+        <div class="row">
+            <h3>Correlation Between Unemployment and Temperature</h3>
+           
+        </div>
+        <!-- Third row with one wide plot -->
+        <div class="row">
+            <img src="{% static 'analysis5/vtemp.png' %}" alt="Plot 5" style="width:100%;">
+        </div>
+        <div class="row">
+            <h3>Correlation Between Unemployment and CPI</h3>
+           
+        </div>
+        <!-- Third row with one wide plot -->
+        <div class="row">
+            <img src="{% static 'analysis5/vcpi.png' %}" alt="Plot 5" style="width:100%;">
+        </div>
+        <div class="row">
+            <h3>Correlation Between Unemployment and Fuel Prices</h3>
+           
+        </div>
+        <!-- Third row with one wide plot -->
+        <div class="row">
+            <img src="{% static 'analysis5/vfuel.png' %}" alt="Plot 5" style="width:100%;">
+        </div>
+        <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </div>
+</body>
+</html>
